@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anmeldung ToolCheck Inklusion</title>
+  <meta name="description" content="Anmeldeformular für Veranstaltungen im Projekt ToolCheck Inklusion.">
+  <style>
+    :root {
+      --bg: #f7f3ed;
+      --card: #ffffff;
+      --text: #1f2933;
+      --muted: #5f6b7a;
+      --line: #d8e2ee;
+      --accent: #f59e0b;
+      --accent-dark: #b45309;
+      --radius: 18px;
+      --success: #166534;
+      --error: #991b1b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .page { max-width: 980px; margin: 0 auto; padding: 32px 18px 56px; }
+    .hero { margin-bottom: 24px; }
+    .eyebrow { text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: var(--accent-dark); margin: 0 0 8px; }
+    h1 { font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1.05; margin: 0 0 16px; }
+    h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin: 0 0 24px; }
+    .lead { font-size: 1.15rem; color: var(--muted); max-width: 760px; margin: 0; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(22px, 4vw, 36px);
+      box-shadow: 0 18px 45px rgba(15,23,42,.07);
+      margin-top: 22px;
+    }
+    .muted { background: #fbfaf8; }
+    .field { margin-bottom: 20px; }
+    label { display: block; font-weight: 800; margin-bottom: 8px; font-size: 1.02rem; }
+    input, select, textarea {
+      width: 100%;
+      font: inherit;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px 14px;
+      background: #fff;
+      color: var(--text);
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: 3px solid rgba(245,158,11,.35);
+      border-color: var(--accent);
+    }
+    select:disabled { background: #edf2f7; color: #718096; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .checkbox { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; }
+    .checkbox input { width: 1.25rem; height: 1.25rem; margin-top: .2rem; }
+    .checkbox label { margin: 0; font-weight: 650; }
+    .event-info {
+      border-left: 6px solid var(--accent);
+      background: #fff7ed;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 8px 0 22px;
+    }
+    .event-info p { margin: 0 0 8px; }
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 24px;
+      background: var(--accent-dark);
+      color: white;
+      font-weight: 800;
+      font-size: 1.05rem;
+      cursor: pointer;
+    }
+    button:hover { filter: brightness(1.05); }
+    button:disabled { opacity: .6; cursor: wait; }
+    .small { font-size: .92rem; color: var(--muted); }
+    .status-success { color: var(--success); font-weight: 700; }
+    .status-error { color: var(--error); font-weight: 700; }
+    [hidden] { display: none !important; }
+    @media (max-width: 720px) {
+      .grid { grid-template-columns: 1fr; gap: 0; }
+      .page { padding-top: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">ToolCheck Inklusion</p>
+      <h1 id="page-title">Anmeldung zu einer Veranstaltung</h1>
+      <p class="lead">Bitte wählen Sie ein Thema und danach den passenden Termin aus. Sie können sich als Einzelperson oder als Gruppe anmelden.</p>
+    </section>
+
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title">Anmeldeformular</h2>
+
+      <form id="registrationForm">
+        <div class="field">
+          <label for="topic">Thema <span aria-hidden="true">*</span></label>
+          <select id="topic" required>
+            <option value="">Bitte auswählen</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="eventDate">Datum und Uhrzeit <span aria-hidden="true">*</span></label>
+          <select id="eventDate" required disabled>
+            <option value="">Bitte zuerst ein Thema auswählen</option>
+          </select>
+        </div>
+
+        <div id="eventInfo" class="event-info" hidden aria-live="polite"></div>
+
+        <div class="field">
+          <label for="registrationType">Wie möchten Sie sich anmelden? <span aria-hidden="true">*</span></label>
+          <select id="registrationType" name="anmeldeart" required>
+            <option value="">Bitte auswählen</option>
+            <option value="Einzelperson">Ich melde mich selbst an</option>
+            <option value="Gruppe">Ich melde eine Gruppe an</option>
+          </select>
+        </div>
+
+        <div class="field" id="groupSizeField" hidden>
+          <label for="groupSize">Mit wie vielen Personen möchten Sie teilnehmen? <span aria-hidden="true">*</span></label>
+          <input id="groupSize" name="anzahl_personen" type="number" min="2" step="1" inputmode="numeric">
+        </div>
+
+        <div class="field">
+          <label for="name">Name / Ansprechperson <span aria-hidden="true">*</span></label>
+          <input id="name" name="name" autocomplete="name" required>
+        </div>
+
+        <div class="grid">
+          <div class="field">
+            <label for="email">E-Mail <span aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Telefon</label>
+            <input id="phone" name="telefon" type="tel" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="organisation">Einrichtung / Organisation</label>
+          <input id="organisation" autocomplete="organization">
+        </div>
+
+        <div class="field">
+          <label for="accessibility">Was brauchen Sie, damit Sie gut teilnehmen können?</label>
+          <textarea id="accessibility" rows="4" placeholder="Zum Beispiel: einfache Sprache, barrierefreier Zugang, technische Unterstützung, Begleitung …"></textarea>
+        </div>
+
+        <div class="field checkbox">
+          <input id="privacy" type="checkbox" required>
+          <label for="privacy">Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anmeldung an KEB Rheinland-Pfalz übermittelt und in einer Anmeldeliste gespeichert werden. <span aria-hidden="true">*</span></label>
+        </div>
+
+        <button id="submitButton" type="submit">Anmeldung senden</button>
+        <p id="statusMessage" class="small" hidden aria-live="polite"></p>
+        <p class="small">Pflichtfelder sind mit * gekennzeichnet.</p>
+      </form>
+    </section>
+
+    <section class="card muted" aria-labelledby="note-title">
+      <h2 id="note-title">Hinweis</h2>
+      <p>Für die Teilnahme an der Veranstaltung sollte sinnvollerweise ein digitales Endgerät zur Verfügung stehen, zum Beispiel ein Handy, ein Tablet oder ein Rechner.</p>
+    </section>
+  </main>
+
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwJhlbaXIXkNpvqtUAfHKcTE9cZi4sckpD_21udqR3NzEeZYV7fif9q6w9I4DT4S1mN/exec";
+
+    const events = [
+  {
+    "id": "ev001",
+    "topic": "Künstliche Intelligenz in Einfacher Sprache",
+    "title": "Künstliche Intelligenz in Einfacher Sprache",
+    "date": "24. August 2026",
+    "dateKey": "2026-08-24T00:00",
+    "format": "Hybrid",
+    "speaker": "Carola Werning",
+    "organiser": "Caritas Werkstätten St.Vinzenz, 56812 Cochem, GruBiNetz Prüm"
+  },
+  {
+    "id": "ev002",
+    "topic": "Künstliche Intelligenz in Einfacher Sprache",
+    "title": "Künstliche Intelligenz in Einfacher Sprache",
+    "date": "28. August 2026 10:00 (MESZ) → 12:50",
+    "dateKey": "2026-08-28T10:00",
+    "format": "Hybrid",
+    "speaker": "Carola Werning",
+    "organiser": "Caritas-Werkstätten Westerwald-Rhein-Lahn"
+  },
+  {
+    "id": "ev003",
+    "topic": "Künstliche Intelligenz in Einfacher Sprache",
+    "title": "Künstliche Intelligenz in Einfacher Sprache",
+    "date": "9. September 2026 13:15 (MESZ) → 15:30",
+    "dateKey": "2026-09-09T13:15",
+    "format": "Hybrid",
+    "speaker": "Carola Werning",
+    "organiser": "Westeifel-Werke / EuWeCo – Industriestraße 1, 54595 Prüm"
+  },
+  {
+    "id": "ev004",
+    "topic": "Künstliche Intelligenz in Einfacher Sprache",
+    "title": "Künstliche Intelligenz in Einfacher Sprache",
+    "date": "21. September 2026 09:00 (MESZ) → 11:00",
+    "dateKey": "2026-09-21T09:00",
+    "format": "Hybrid",
+    "speaker": "Carola Werning",
+    "organiser": "GruBiNetz Prüm im Mehrgenerationenhaus Gerolstein – Raderstraße 9, 54568 Gerolstein"
+  },
+  {
+    "id": "ev005",
+    "topic": "Künstliche Intelligenz in Einfacher Sprache",
+    "title": "Künstliche Intelligenz in Einfacher Sprache",
+    "date": "30. September 2026 13:15 (MESZ) → 15:15",
+    "dateKey": "2026-09-30T13:15",
+    "format": "Hybrid",
+    "speaker": "Carola Werning",
+    "organiser": "VHS Neuwied"
+  },
+  {
+    "id": "ev006",
+    "topic": "Künstliche Intelligenz in Einfacher Sprache",
+    "title": "Künstliche Intelligenz in Einfacher Sprache",
+    "date": "Termin wird noch bekannt gegeben",
+    "dateKey": "9999-12-31T23:59",
+    "format": "Hybrid",
+    "speaker": "Carola Werning",
+    "organiser": "KVHS Rhein-Lahn"
+  },
+  {
+    "id": "ev007",
+    "topic": "Mein Freund - der Chatbot",
+    "title": "Mein Freund - der Chatbot",
+    "date": "11. Mai 2026 10:00 (MESZ) → 12:00",
+    "dateKey": "2026-05-11T10:00",
+    "format": "Hybrid",
+    "speaker": "Elisabeth Vanderheiden",
+    "organiser": "Europäischen Werkstätten Cooperation (EuweCo) und MGH Gerolstein"
+  },
+  {
+    "id": "ev008",
+    "topic": "Mein Freund - der Chatbot",
+    "title": "Mein Freund - der Chatbot",
+    "date": "31. August 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-08-31T10:00",
+    "format": "Hybrid",
+    "speaker": "Elisabeth Vanderheiden",
+    "organiser": "WesteifelWerke Gerolstein und MGH Gerolstein"
+  },
+  {
+    "id": "ev009",
+    "topic": "Social Media in Einfacher Sprache",
+    "title": "Social Media in Einfacher Sprache",
+    "date": "17. Juni 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-06-17T10:00",
+    "format": "Präsenz",
+    "speaker": "Anne Badmann",
+    "organiser": "Caritas-Werkstätten Westerwald-Rhein-Lahn"
+  },
+  {
+    "id": "ev010",
+    "topic": "Social Media in Einfacher Sprache",
+    "title": "Social Media in Einfacher Sprache",
+    "date": "1. Oktober 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-10-01T10:00",
+    "format": "Präsenz",
+    "speaker": "Anna Badmann",
+    "organiser": "Caritas Werkstätten St. Vinzenz – August-Horch-Straße 12, 56812 Cochem"
+  },
+  {
+    "id": "ev012",
+    "topic": "Social Media in Einfacher Sprache",
+    "title": "Social Media in Einfacher Sprache",
+    "date": "23. Oktober 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-10-23T10:00",
+    "format": "Präsenz",
+    "speaker": "Anna Badmann",
+    "organiser": "vhs der VG Montabaur – Sauertalstraße 19, 56410 Montabaur"
+  },
+  {
+    "id": "ev013",
+    "topic": "Sprachassistenten im Alltag (Sprachassistenten im Alltag)",
+    "title": "Sprachassistenten im Alltag",
+    "date": "8. Juni 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-06-08T10:00",
+    "format": "Präsenz",
+    "speaker": "Jonas Novaki",
+    "organiser": "WesteifelWerke Gerolstein und MGH Gerolstein"
+  },
+  {
+    "id": "ev014",
+    "topic": "Sprachassistenten im Alltag (Sprachassistenten im Alltag)",
+    "title": "Sprachassistenten im Alltag",
+    "date": "6. Juli 2026 09:00 (MESZ) → 11:30",
+    "dateKey": "2026-07-06T09:00",
+    "format": "Hybrid",
+    "speaker": "Jonas Novaki",
+    "organiser": "KVHS Rhein-Lahn"
+  },
+  {
+    "id": "ev015",
+    "topic": "Sprachassistenten im Alltag (Sprachassistenten im Alltag)",
+    "title": "Sprachassistenten im Alltag",
+    "date": "21. September 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-09-21T10:00",
+    "format": "Präsenz",
+    "speaker": "Jonas Novaki",
+    "organiser": "Caritas Werkstätten St.Vinzenz, 56812 Cochem"
+  },
+  {
+    "id": "ev017",
+    "topic": "Texte in Einfache Sprache übersetzen",
+    "title": "Texte in Einfache Sprache übersetzen",
+    "date": "2. Juli 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-07-02T10:00",
+    "format": "Präsenz",
+    "speaker": "Ruben Rhensius",
+    "organiser": "KVHS Rhein-Lahn"
+  },
+  {
+    "id": "ev019",
+    "topic": "Texte in Einfache Sprache übersetzen",
+    "title": "Texte in Einfache Sprache übersetzen",
+    "date": "14. September 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-09-14T10:00",
+    "format": "Präsenz",
+    "speaker": "Ruben Rhensius",
+    "organiser": "WesteifelWerke Gerolstein / MGH Gerolstein – Raderstraße 9, 54568 Gerolstein"
+  },
+  {
+    "id": "ev020",
+    "topic": "Texte in Einfache Sprache übersetzen",
+    "title": "Texte in Einfache Sprache übersetzen",
+    "date": "Termin wird noch bekannt gegeben",
+    "dateKey": "9999-12-31T23:59",
+    "format": "Präsenz",
+    "speaker": "Ruben Rhensius",
+    "organiser": ""
+  },
+  {
+    "id": "ev021",
+    "topic": "Tools zum Umgang mit Zahlen/Rechnen",
+    "title": "Tools zum Umgang mit Zahlen/Rechnen",
+    "date": "16. September 2026 11:00 (MESZ) → 13:00",
+    "dateKey": "2026-09-16T11:00",
+    "format": "Hybrid",
+    "speaker": "Carola Werning",
+    "organiser": "Westeifel-Werke / EuWeCo – Industriestraße 1, 54595 Prüm"
+  },
+  {
+    "id": "ev022",
+    "topic": "Tools zum Umgang mit Zahlen/Rechnen",
+    "title": "Tools zum Umgang mit Zahlen/Rechnen",
+    "date": "21. September 2026 09:00 (MESZ) → 11:00",
+    "dateKey": "2026-09-21T09:00",
+    "format": "Hybrid",
+    "speaker": "Carola Werning",
+    "organiser": "GruBiNetz Prüm"
+  },
+  {
+    "id": "ev023",
+    "topic": "Tools zum Umgang mit Zahlen/Rechnen",
+    "title": "Tools zum Umgang mit Zahlen/Rechnen in Einfacher Sprache",
+    "date": "1. Oktober 2026 13:15 (MESZ) → 15:15",
+    "dateKey": "2026-10-01T13:15",
+    "format": "Hybrid",
+    "speaker": "Carola Werning",
+    "organiser": "Volkshochschule Neuwied – Heddesdorfer Straße 33, 56564 Neuwied"
+  },
+  {
+    "id": "ev024",
+    "topic": "Tools zum Umgang mit Zahlen/Rechnen",
+    "title": "Tools zum Umgang mit Zahlen/Rechnen",
+    "date": "Termin wird noch bekannt gegeben",
+    "dateKey": "9999-12-31T23:59",
+    "format": "Hybrid",
+    "speaker": "Carola Werning",
+    "organiser": "vhs der VG Montabaur"
+  },
+  {
+    "id": "ev025",
+    "topic": "Tools zum Vorlesen von Texten (Text-to-Speech)",
+    "title": "Tools zum Vorlesen von Texten",
+    "date": "22. Juni 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-06-22T10:00",
+    "format": "Online",
+    "speaker": "Jonas Novaki",
+    "organiser": "WesteifelWerke Gerolstein und MGH Gerolstein"
+  },
+  {
+    "id": "ev026",
+    "topic": "Tools zum Vorlesen von Texten (Text-to-Speech)",
+    "title": "Tools zum Vorlesen von Texten",
+    "date": "7. Juli 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-07-07T10:00",
+    "format": "Hybrid",
+    "speaker": "Jonas Novaki",
+    "organiser": "Caritas-Werkstätten Westerwald-Rhein-Lahn"
+  },
+  {
+    "id": "ev027",
+    "topic": "Tools zum Übersetzen von Sprachen",
+    "title": "Übersetzungstools",
+    "date": "19. Oktober 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-10-19T10:00",
+    "format": "Präsenz",
+    "speaker": "Jonas Novaki",
+    "organiser": "Europäischen Werkstätten Cooperation (EuweCo) und MGH Gerolstein"
+  },
+  {
+    "id": "ev028",
+    "topic": "Tools zum Übersetzen von Sprachen",
+    "title": "Tools für sehbeeinträchtigte Menschen",
+    "date": "Termin wird noch bekannt gegeben",
+    "dateKey": "9999-12-31T23:59",
+    "format": "",
+    "speaker": "Jonas Novaki",
+    "organiser": ""
+  },
+  {
+    "id": "ev029",
+    "topic": "Tools zum Übersetzen von Sprachen",
+    "title": "Tools zum Übersetzen von Sprachen",
+    "date": "Termin wird noch bekannt gegeben",
+    "dateKey": "9999-12-31T23:59",
+    "format": "",
+    "speaker": "Jonas Novaki",
+    "organiser": ""
+  },
+  {
+    "id": "ev030",
+    "topic": "Tools zur Rechtschreib- und Grammatikunterstützung",
+    "title": "Tools zur Rechtschreib- und Grammatikunterstützung",
+    "date": "Termin wird noch bekannt gegeben",
+    "dateKey": "9999-12-31T23:59",
+    "format": "",
+    "speaker": "",
+    "organiser": "vhs der VG Montabaur"
+  },
+  {
+    "id": "ev031",
+    "topic": "Mein Geld im Blick",
+    "title": "Mein Geld im Blick – Zwei Haushaltsbuch-Apps in Einfacher Sprache ausprobieren",
+    "date": "21. Oktober 2026 10:00 (MESZ) → 12:15",
+    "dateKey": "2026-10-21T10:00",
+    "format": "Hybrid",
+    "speaker": "Elisabeth Vanderheiden",
+    "organiser": "Mehrgenerationenhaus Gerolstein – Raderstraße 9, 54568 Gerolstein"
+  }
+];
+
+    const topicSelect = document.querySelector("#topic");
+    const dateSelect = document.querySelector("#eventDate");
+    const eventInfo = document.querySelector("#eventInfo");
+    const registrationForm = document.querySelector("#registrationForm");
+    const registrationType = document.querySelector("#registrationType");
+    const groupSizeField = document.querySelector("#groupSizeField");
+    const groupSize = document.querySelector("#groupSize");
+    const statusMessage = document.querySelector("#statusMessage");
+    const submitButton = document.querySelector("#submitButton");
+
+    function escapeHtml(value) {
+      return String(value || "").replace(/[&<>'"]/g, char => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        "'":"&#39;",
+        '"':"&quot;"
+      }[char]));
+    }
+
+    function uniqueTopics(items) {
+      return [...new Set(items.map(event => event.topic).filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b, "de"));
+    }
+
+    function fillTopics() {
+      topicSelect.innerHTML = '<option value="">Bitte auswählen</option>';
+      for (const topic of uniqueTopics(events)) {
+        const option = document.createElement("option");
+        option.value = topic;
+        option.textContent = topic;
+        topicSelect.appendChild(option);
+      }
+    }
+
+    function fillDates(topic) {
+      dateSelect.innerHTML = "";
+      eventInfo.hidden = true;
+
+      const matchingEvents = events
+        .filter(event => event.topic === topic && event.date)
+        .sort((a, b) => a.dateKey.localeCompare(b.dateKey));
+
+      if (!matchingEvents.length) {
+        dateSelect.disabled = true;
+        dateSelect.innerHTML = '<option value="">Kein Termin gefunden</option>';
+        return;
+      }
+
+      dateSelect.disabled = false;
+      dateSelect.innerHTML = '<option value="">Bitte Termin auswählen</option>';
+
+      for (const event of matchingEvents) {
+        const option = document.createElement("option");
+        option.value = event.id;
+        option.textContent = `${event.date}${event.format ? " · " + event.format : ""}`;
+        dateSelect.appendChild(option);
+      }
+    }
+
+    function showEvent(eventId) {
+      const selected = events.find(item => item.id === eventId);
+
+      if (!selected) {
+        eventInfo.hidden = true;
+        return;
+      }
+
+      eventInfo.innerHTML = `
+        <p><strong>${escapeHtml(selected.title)}</strong></p>
+        <p><strong>Datum und Uhrzeit:</strong> ${escapeHtml(selected.date)}</p>
+        ${selected.format ? `<p><strong>Format:</strong> ${escapeHtml(selected.format)}</p>` : ""}
+        ${selected.speaker ? `<p><strong>Referent:in:</strong> ${escapeHtml(selected.speaker)}</p>` : ""}
+        ${selected.organiser ? `<p><strong>Veranstalter:</strong> ${escapeHtml(selected.organiser)}</p>` : ""}
+      `;
+
+      eventInfo.hidden = false;
+    }
+
+    topicSelect.addEventListener("change", event => fillDates(event.target.value));
+    dateSelect.addEventListener("change", event => showEvent(event.target.value));
+
+    registrationType.addEventListener("change", function () {
+      const isGroup = this.value === "Gruppe";
+      groupSizeField.hidden = !isGroup;
+      groupSize.required = isGroup;
+
+      if (!isGroup) {
+        groupSize.value = "";
+      }
+    });
+
+    registrationForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      if (!registrationForm.reportValidity()) return;
+
+      const selectedEvent = events.find(item => item.id === dateSelect.value);
+
+      if (!selectedEvent) {
+        statusMessage.hidden = false;
+        statusMessage.className = "small status-error";
+        statusMessage.textContent = "Bitte wählen Sie einen Termin aus.";
+        return;
+      }
+
+      const organisation = document.querySelector("#organisation").value.trim();
+      const accessibility = document.querySelector("#accessibility").value.trim();
+
+      const notes = [];
+      if (organisation) notes.push("Organisation: " + organisation);
+      if (accessibility) notes.push("Unterstützungsbedarf: " + accessibility);
+
+      const data = new URLSearchParams();
+      data.append("veranstaltung", `${selectedEvent.title} – ${selectedEvent.date}`);
+      data.append("anmeldeart", registrationType.value);
+      data.append("anzahl_personen", registrationType.value === "Einzelperson" ? "1" : groupSize.value);
+      data.append("name", document.querySelector("#name").value.trim());
+      data.append("email", document.querySelector("#email").value.trim());
+      data.append("telefon", document.querySelector("#phone").value.trim());
+      data.append("nachricht", notes.join("\n"));
+
+      submitButton.disabled = true;
+      statusMessage.hidden = false;
+      statusMessage.className = "small";
+      statusMessage.textContent = "Ihre Anmeldung wird übermittelt …";
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          body: data
+        });
+
+        statusMessage.className = "small status-success";
+        statusMessage.textContent = "Vielen Dank. Ihre Anmeldung wurde übermittelt.";
+
+        registrationForm.reset();
+        groupSizeField.hidden = true;
+        eventInfo.hidden = true;
+        dateSelect.disabled = true;
+        dateSelect.innerHTML = '<option value="">Bitte zuerst ein Thema auswählen</option>';
+      } catch (error) {
+        statusMessage.className = "small status-error";
+        statusMessage.textContent = "Die Anmeldung konnte leider nicht übermittelt werden. Bitte versuchen Sie es erneut.";
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+
+    fillTopics();
+  </script>
+</body>
+</html>
