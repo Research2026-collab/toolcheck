@@ -207,13 +207,13 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
   <section class="facts" aria-label="Das Projekt in Zahlen">
     <div class="fact"><span class="badge b-teal" aria-hidden="true"><svg class="ico"><use href="#i-people"/></svg></span><div><strong>200</strong><span>Nutzer:innen haben getestet</span></div></div>
     <div class="fact"><span class="badge b-sky" aria-hidden="true"><svg class="ico"><use href="#i-pin"/></svg></span><div><strong>30</strong><span>Workshops wurden umgesetzt</span></div></div>
-    <div class="fact"><span class="badge b-green" aria-hidden="true"><svg class="ico"><use href="#i-sheet"/></svg></span><div><strong id="count-ready">7</strong><span>Infoblätter zum Herunterladen</span></div></div>
+    <div class="fact"><span class="badge b-green" aria-hidden="true"><svg class="ico"><use href="#i-sheet"/></svg></span><div><strong>7</strong><span>Infoblätter zum Herunterladen</span></div></div>
   </section>
 
     <section id="projekt" aria-labelledby="h-projekt">
       <div class="section-head">
         <h2 id="h-projekt">Über das Projekt</h2>
-        <div class="toggle" role="group" aria-label="Sprache wählen">
+        <div class="toggle" id="lang-toggle" role="group" aria-label="Sprache wählen" hidden>
           <button type="button" id="btn-std" aria-pressed="true">Standardsprache</button>
           <button type="button" id="btn-easy" aria-pressed="false">Einfache Sprache</button>
         </div>
@@ -249,9 +249,94 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
         <h2 id="h-info">Infoblätter zum Herunterladen</h2>
         
       </div>
-      <div class="grid" id="ready"></div>
+      <div class="grid" id="ready">
+        <article class="sheet">
+          <div class="sheet-top"><span class="badge b-sky"><svg class="ico" aria-hidden="true"><use href="#i-share"/></svg></span><h3>Soziale Medien einfach erklärt</h3></div>
+          <p>Ein Kartenset der KEB Hessen erklärt TikTok, Instagram und falsche Nachrichten. Mit Tipps für Gruppen und Begleitpersonen.</p>
+          <div class="tags"><span class="tag ok">verfügbar</span><span class="tag info">Einfache Sprache · 4 Seiten</span></div>
+          <div class="dl">
+            <a class="btn primary" href="downloads/Infoblatt_Soziale_Medien_Einfache_Sprache.pdf" download aria-label="Soziale Medien einfach erklärt als PDF herunterladen (168 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</a>
+            <a class="btn ghost" href="downloads/Infoblatt_Soziale_Medien_Einfache_Sprache.docx" download aria-label="Soziale Medien einfach erklärt als Word-Datei herunterladen (71 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>Word</a>
+          </div>
+        </article>
+        <article class="sheet">
+          <div class="sheet-top"><span class="badge b-teal"><svg class="ico" aria-hidden="true"><use href="#i-shield"/></svg></span><h3>Hilfe bei Cybermobbing</h3></div>
+          <p>Die kostenlose App „Cyber-Mobbing Leichte Hilfe“ und sechs Schritte, die bei Beleidigungen im Internet helfen.</p>
+          <div class="tags"><span class="tag ok">verfügbar</span><span class="tag info">Einfache Sprache · 3 Seiten</span></div>
+          <div class="dl">
+            <a class="btn primary" href="downloads/Infoblatt_Hilfe_bei_Cybermobbing_Einfache_Sprache.pdf" download aria-label="Hilfe bei Cybermobbing als PDF herunterladen (154 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</a>
+            <a class="btn ghost" href="downloads/Infoblatt_Hilfe_bei_Cybermobbing_Einfache_Sprache.docx" download aria-label="Hilfe bei Cybermobbing als Word-Datei herunterladen (70 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>Word</a>
+          </div>
+        </article>
+        <article class="sheet">
+          <div class="sheet-top"><span class="badge b-sky"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg></span><h3>Chatbots</h3></div>
+          <p>Wobei Chatbots beim Schreiben und Verstehen helfen, und worauf man bei Datenschutz und Kosten achten sollte.</p>
+          <div class="tags"><span class="tag ok">verfügbar</span><span class="tag info">Einfache Sprache · 3 Seiten</span></div>
+          <div class="dl">
+            <a class="btn primary" href="downloads/Infoblatt_Chatbots_Einfache_Sprache.pdf" download aria-label="Chatbots als PDF herunterladen (124 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</a>
+            <a class="btn ghost" href="downloads/Infoblatt_Chatbots_Einfache_Sprache.docx" download aria-label="Chatbots als Word-Datei herunterladen (63 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>Word</a>
+          </div>
+        </article>
+        <article class="sheet">
+          <div class="sheet-top"><span class="badge b-amber"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></span><h3>Emotionale Beziehungen zu Chatbots</h3></div>
+          <p>Über Nähe, Einsamkeit und die Grenzen eines Chatbots als Gesprächspartner.</p>
+          <div class="tags"><span class="tag ok">verfügbar</span><span class="tag info">Einfache Sprache · 3 Seiten</span></div>
+          <div class="dl">
+            <a class="btn primary" href="downloads/Infoblatt_Emotionale_Beziehungen_Einfache_Sprache.pdf" download aria-label="Emotionale Beziehungen zu Chatbots als PDF herunterladen (119 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</a>
+            <a class="btn ghost" href="downloads/Infoblatt_Emotionale_Beziehungen_Einfache_Sprache.docx" download aria-label="Emotionale Beziehungen zu Chatbots als Word-Datei herunterladen (62 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>Word</a>
+          </div>
+        </article>
+        <article class="sheet">
+          <div class="sheet-top"><span class="badge b-teal"><svg class="ico" aria-hidden="true"><use href="#i-mic"/></svg></span><h3>Sprachassistenten im Alltag</h3></div>
+          <p>Alexa, Siri, Gemini, ChatGPT und Claude im Vergleich, mit QR-Codes zu allen Angeboten.</p>
+          <div class="tags"><span class="tag ok">verfügbar</span><span class="tag info">Einfache Sprache · 3 Seiten</span></div>
+          <div class="dl">
+            <a class="btn primary" href="downloads/Infoblatt_Sprachassistenten_Einfache_Sprache.pdf" download aria-label="Sprachassistenten im Alltag als PDF herunterladen (186 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</a>
+            <a class="btn ghost" href="downloads/Infoblatt_Sprachassistenten_Einfache_Sprache.docx" download aria-label="Sprachassistenten im Alltag als Word-Datei herunterladen (75 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>Word</a>
+          </div>
+        </article>
+        <article class="sheet">
+          <div class="sheet-top"><span class="badge b-green"><svg class="ico" aria-hidden="true"><use href="#i-wallet"/></svg></span><h3>Haushaltsbuch auf dem Handy</h3></div>
+          <p>Zwei kostenlose Apps zum Planen von Geld. Die Daten bleiben auf dem eigenen Gerät.</p>
+          <div class="tags"><span class="tag ok">verfügbar</span><span class="tag info">Einfache Sprache · 3 Seiten</span></div>
+          <div class="dl">
+            <a class="btn primary" href="downloads/Infoblatt_Haushaltsbuch_Einfache_Sprache.pdf" download aria-label="Haushaltsbuch auf dem Handy als PDF herunterladen (168 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</a>
+            <a class="btn ghost" href="downloads/Infoblatt_Haushaltsbuch_Einfache_Sprache.docx" download aria-label="Haushaltsbuch auf dem Handy als Word-Datei herunterladen (65 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>Word</a>
+          </div>
+        </article>
+        <article class="sheet">
+          <div class="sheet-top"><span class="badge b-amber"><svg class="ico" aria-hidden="true"><use href="#i-speaker"/></svg></span><h3>Texte vorlesen lassen</h3></div>
+          <p>Sechs Vorlese-Tools im Test, von der Funktion im iPhone bis zu ElevenLabs.</p>
+          <div class="tags"><span class="tag ok">verfügbar</span><span class="tag info">Einfache Sprache · 3 Seiten</span></div>
+          <div class="dl">
+            <a class="btn primary" href="downloads/Infoblatt_Texte_vorlesen_Einfache_Sprache.pdf" download aria-label="Texte vorlesen lassen als PDF herunterladen (199 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</a>
+            <a class="btn ghost" href="downloads/Infoblatt_Texte_vorlesen_Einfache_Sprache.docx" download aria-label="Texte vorlesen lassen als Word-Datei herunterladen (77 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>Word</a>
+          </div>
+        </article>
+      </div>
       <h3 class="sub">Bald verfügbar</h3>
-      <div class="grid" id="soon"></div>
+      <div class="grid" id="soon">
+        <article class="sheet upcoming">
+          <div class="sheet-top"><span class="badge b-sky"><svg class="ico" aria-hidden="true"><use href="#i-text"/></svg></span><h4>Texte in Einfache Sprache übersetzen</h4></div>
+          <p>KI-Tools, die schwere Texte leichter machen.</p>
+          <div class="tags"><span class="tag soon">in Arbeit</span></div>
+        </article>
+        <article class="sheet upcoming">
+          <div class="sheet-top"><span class="badge b-green"><svg class="ico" aria-hidden="true"><use href="#i-calc"/></svg></span><h4>Rechnen und Zahlen</h4></div>
+          <p>Hilfen für den Umgang mit Zahlen im Alltag.</p>
+          <div class="tags"><span class="tag soon">in Arbeit</span></div>
+        </article>
+        <article class="sheet upcoming">
+          <div class="sheet-top"><span class="badge b-teal"><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg></span><h4>Andere Sprachen übersetzen</h4></div>
+          <p>Übersetzungs-Apps für Gespräche und Texte.</p>
+          <div class="tags"><span class="tag soon">in Arbeit</span></div>
+        </article>
+        <article class="sheet upcoming">
+          <div class="sheet-top"><span class="badge b-amber"><svg class="ico" aria-hidden="true"><use href="#i-puzzle"/></svg></span><h4>Hilfen bei Neurodiversität</h4></div>
+          <p>Tools für Konzentration, Struktur und Orientierung.</p>
+          <div class="tags"><span class="tag soon">in Arbeit</span></div>
+        </article>
+      </div>
     </section>
 
     <section id="partner" aria-labelledby="h-partner">
@@ -278,57 +363,7 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
 </div>
 
 <script>
-const READY = [
-  { file: "Infoblatt_Soziale_Medien_Einfache_Sprache", icon: "share", tone: "b-sky", title: "Soziale Medien einfach erklärt", text: "Ein Kartenset der KEB Hessen erklärt TikTok, Instagram und falsche Nachrichten. Mit Tipps für Gruppen und Begleitpersonen.", pages: 4 },
-  { file: "Infoblatt_Hilfe_bei_Cybermobbing_Einfache_Sprache", icon: "shield", tone: "b-teal", title: "Hilfe bei Cybermobbing", text: "Die kostenlose App „Cyber-Mobbing Leichte Hilfe“ und sechs Schritte, die bei Beleidigungen im Internet helfen.", pages: 3 },
-  { file: "Infoblatt_Chatbots_Einfache_Sprache", icon: "chat", tone: "b-sky", title: "Chatbots", text: "Wobei Chatbots beim Schreiben und Verstehen helfen, und worauf man bei Datenschutz und Kosten achten sollte.", pages: 3 },
-  { file: "Infoblatt_Emotionale_Beziehungen_Einfache_Sprache", icon: "heart", tone: "b-amber", title: "Emotionale Beziehungen zu Chatbots", text: "Über Nähe, Einsamkeit und die Grenzen eines Chatbots als Gesprächspartner.", pages: 3 },
-  { file: "Infoblatt_Sprachassistenten_Einfache_Sprache", icon: "mic", tone: "b-teal", title: "Sprachassistenten im Alltag", text: "Alexa, Siri, Gemini, ChatGPT und Claude im Vergleich, mit QR-Codes zu allen Angeboten.", pages: 3 },
-  { file: "Infoblatt_Haushaltsbuch_Einfache_Sprache", icon: "wallet", tone: "b-green", title: "Haushaltsbuch auf dem Handy", text: "Zwei kostenlose Apps zum Planen von Geld. Die Daten bleiben auf dem eigenen Gerät.", pages: 3 },
-  { file: "Infoblatt_Texte_vorlesen_Einfache_Sprache", icon: "speaker", tone: "b-amber", title: "Texte vorlesen lassen", text: "Sechs Vorlese-Tools im Test, von der Funktion im iPhone bis zu ElevenLabs.", pages: 3 },
-];
-const SOON = [
-  { icon: "text", tone: "b-sky", title: "Texte in Einfache Sprache übersetzen", text: "KI-Tools, die schwere Texte leichter machen." },
-  { icon: "calc", tone: "b-green", title: "Rechnen und Zahlen", text: "Hilfen für den Umgang mit Zahlen im Alltag." },
-  { icon: "globe", tone: "b-teal", title: "Andere Sprachen übersetzen", text: "Übersetzungs-Apps für Gespräche und Texte." },
-  { icon: "puzzle", tone: "b-amber", title: "Hilfen bei Neurodiversität", text: "Tools für Konzentration, Struktur und Orientierung." },
-];
-
-const NS = "http://www.w3.org/2000/svg";
-function icon(name) {
-  const svg = document.createElementNS(NS, "svg");
-  svg.setAttribute("class", "ico"); svg.setAttribute("aria-hidden", "true");
-  const use = document.createElementNS(NS, "use"); use.setAttribute("href", "#i-" + name);
-  svg.append(use); return svg;
-}
-const el = (tag, attrs = {}, kids = []) => {
-  const n = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs)) k === "text" ? (n.textContent = v) : n.setAttribute(k, v);
-  for (const c of kids) n.append(c);
-  return n;
-};
-
-const ready = document.getElementById("ready");
-for (const s of READY) {
-  const pdf = el("a", { class: "btn primary", href: "downloads/" + s.file + ".pdf", download: "", "aria-label": s.title + " als PDF herunterladen" }, [icon("download"), document.createTextNode("PDF")]);
-  const docx = el("a", { class: "btn ghost", href: "downloads/" + s.file + ".docx", download: "", "aria-label": s.title + " als Word-Datei herunterladen" }, [icon("download"), document.createTextNode("Word")]);
-  ready.append(el("article", { class: "sheet" }, [
-    el("div", { class: "sheet-top" }, [el("span", { class: "badge " + s.tone }, [icon(s.icon)]), el("h3", { text: s.title })]),
-    el("p", { text: s.text }),
-    el("div", { class: "tags" }, [el("span", { class: "tag ok", text: "verfügbar" }), el("span", { class: "tag info", text: "Einfache Sprache · " + s.pages + " Seiten" })]),
-    el("div", { class: "dl" }, [pdf, docx]),
-  ]));
-}
-const soon = document.getElementById("soon");
-for (const s of SOON) {
-  soon.append(el("article", { class: "sheet upcoming" }, [
-    el("div", { class: "sheet-top" }, [el("span", { class: "badge " + s.tone }, [icon(s.icon)]), el("h4", { text: s.title })]),
-    el("p", { text: s.text }),
-    el("div", { class: "tags" }, [el("span", { class: "tag soon", text: "in Arbeit" })]),
-  ]));
-}
-document.getElementById("count-ready").textContent = READY.length;
-
+document.getElementById("lang-toggle").hidden = false;
 const std = document.getElementById("btn-std"), easy = document.getElementById("btn-easy");
 function setLang(isEasy) {
   document.getElementById("txt-std").hidden = isEasy;
