@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ToolCheck Inklusion · Digitale Tools, geprüft von Expert:innen in eigener Sache</title>
+<meta name="description" content="ToolCheck Inklusion ist ein Projekt der KEB Rheinland-Pfalz. Menschen mit Behinderungen testen digitale Tools. Die Ergebnisse gibt es als Infoblätter in Einfacher Sprache zum Herunterladen.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: helle, zentrierte Projektseite; weiße Karten mit Symbolen auf sehr hellem Grund, Marineblau und Türkis wie in der Persona.Werkstatt */
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --text: #1a202c;
+  --muted: #4a5568;
+  --light: #718096;
+  --border: #e2e8f0;
+  --navy: #1a365d;
+  --teal: #2b7a78;
+  --teal-light: #3aafa9;
+  --teal-soft: #e6f6f4;
+  --sky-soft: #ebf8ff;
+  --amber: #8a5a12;
+  --amber-soft: #fdf5e6;
+  --green: #276749;
+  --green-soft: #e6f4ea;
+  --on-teal: #ffffff;
+  --shadow: 0 4px 16px rgba(26, 54, 93, 0.08);
+  --focus: #d69e2e;
+  --f-body: "Atkinson Hyperlegible", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141b24; --surface: #1c2532; --text: #e8edf3; --muted: #b4c0cf; --light: #93a1b3; --border: #2c384a;
+    --navy: #b9d3f2; --teal: #5cc8c2; --teal-light: #7fd8d2; --teal-soft: #173533; --sky-soft: #1b2d42;
+    --amber: #f0c27a; --amber-soft: #3a2f1c; --green: #8fd3ad; --green-soft: #1b3326; --on-teal: #0d1b1b;
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.35); --focus: #f0c27a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141b24; --surface: #1c2532; --text: #e8edf3; --muted: #b4c0cf; --light: #93a1b3; --border: #2c384a;
+  --navy: #b9d3f2; --teal: #5cc8c2; --teal-light: #7fd8d2; --teal-soft: #173533; --sky-soft: #1b2d42;
+  --amber: #f0c27a; --amber-soft: #3a2f1c; --green: #8fd3ad; --green-soft: #1b3326; --on-teal: #0d1b1b;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.35); --focus: #f0c27a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--f-body); font-size: 1.0625rem; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.app { max-width: 1040px; margin: 0 auto; padding-block: 24px 64px; }
+h1, h2, h3 { margin: 0; line-height: 1.25; text-wrap: balance; color: var(--navy); }
+p { margin: 0; }
+a { color: var(--teal); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 16px; top: 16px; background: var(--surface); padding: .5rem 1rem; z-index: 20; border-radius: 6px; }
+.ico { width: 1.5rem; height: 1.5rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* Kopf */
+.topbar { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.4rem; padding-block: .5rem 0; }
+.topbar a { color: var(--muted); text-decoration: none; font-weight: 700; font-size: .95rem; padding: .3rem .2rem; }
+.topbar a:hover { color: var(--teal); text-decoration: underline; }
+.header { text-align: center; padding-block: 40px 28px; }
+.logo { width: 3.6rem; height: 3.6rem; border-radius: 50%; background: var(--teal); color: var(--on-teal); display: grid; place-items: center; margin: 0 auto 1rem; box-shadow: 0 0 0 6px var(--teal-soft); }
+.logo .ico { width: 1.9rem; height: 1.9rem; stroke-width: 2.6; }
+.eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: .6rem; }
+.header h1 { font-size: clamp(1.75rem, 1.3rem + 2vw, 2.4rem); }
+.subtitle { color: var(--muted); max-width: 40rem; margin: .9rem auto 0; font-size: 1.1rem; }
+.cta { display: flex; justify-content: center; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.btn { font: inherit; font-weight: 700; font-size: .95rem; border-radius: 8px; padding: .65rem 1.2rem; cursor: pointer; border: 2px solid var(--teal); text-decoration: none; display: inline-flex; align-items: center; gap: .5rem; }
+.btn .ico { width: 1.15rem; height: 1.15rem; }
+.btn.primary { background: var(--teal); color: var(--on-teal); }
+.btn.ghost { background: var(--surface); color: var(--teal); }
+.btn:hover { filter: brightness(1.07); }
+.btn[disabled] { opacity: .6; cursor: progress; }
+
+/* Zahlen */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1rem; margin-bottom: 2.5rem; }
+.fact { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.2rem; display: flex; gap: .9rem; align-items: center; }
+.fact .badge { width: 3rem; height: 3rem; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.fact strong { display: block; font-size: 1.9rem; line-height: 1.1; color: var(--navy); font-variant-numeric: tabular-nums; }
+.fact span { color: var(--muted); font-size: .95rem; }
+.b-teal { background: var(--teal-soft); color: var(--teal); }
+.b-sky { background: var(--sky-soft); color: var(--navy); }
+.b-amber { background: var(--amber-soft); color: var(--amber); }
+.b-green { background: var(--green-soft); color: var(--green); }
+
+/* Abschnitte */
+section { margin-bottom: 2.75rem; }
+.section-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.1rem; }
+h2 { font-size: 1.5rem; }
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+
+.toggle { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; padding: 3px; background: var(--surface); }
+.toggle button { font: inherit; font-size: .9rem; font-weight: 700; border: 0; background: transparent; color: var(--muted); padding: .4rem .95rem; border-radius: 999px; cursor: pointer; }
+.toggle button[aria-pressed="true"] { background: var(--teal); color: var(--on-teal); }
+.about { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 2rem; }
+.prose { display: grid; gap: 1rem; max-width: 40rem; color: var(--text); }
+.easy p { font-size: 1.15rem; line-height: 1.75; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.steps li { display: flex; gap: .85rem; align-items: center; background: var(--bg); border-radius: 10px; padding: .75rem .9rem; }
+.steps .badge { width: 2.6rem; height: 2.6rem; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.steps b { display: block; color: var(--navy); }
+.steps span { color: var(--muted); font-size: .92rem; }
+.steps-title { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: .75rem; }
+
+/* Infoblätter */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
+.sheet { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; gap: .75rem; min-width: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .sheet:not(.upcoming) { transition: box-shadow .2s, transform .15s; }
+  .sheet:not(.upcoming):hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+  .btn { transition: filter .15s; }
+}
+.sheet-top { display: flex; gap: .9rem; align-items: center; }
+.sheet-top .badge { width: 3rem; height: 3rem; border-radius: 12px; display: grid; place-items: center; flex: none; }
+.sheet-top .badge .ico { width: 1.6rem; height: 1.6rem; }
+.sheet h3, .sheet h4 { font-size: 1.12rem; margin: 0; line-height: 1.25; color: var(--navy); }
+.sheet p { color: var(--muted); font-size: .95rem; flex: 1; }
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+.tag { font-size: .875rem; padding: .2rem .65rem; border-radius: 999px; font-weight: 700; }
+.tag.ok { background: var(--green-soft); color: var(--green); }
+.tag.info { background: var(--sky-soft); color: var(--navy); }
+.tag.soon { background: var(--amber-soft); color: var(--amber); }
+.sheet.upcoming { background: transparent; border-style: dashed; }
+.sheet.upcoming .badge { opacity: .75; }
+.dl { display: flex; flex-wrap: wrap; gap: .5rem; }
+.sub { font-size: 1.15rem; margin-block: 1.75rem .9rem; }
+
+/* Partner */
+.partners { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: .9rem; }
+.partner { display: flex; gap: .8rem; align-items: flex-start; padding: .9rem 1rem; background: var(--bg); border-radius: 10px; }
+.partner .badge { width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.partner .badge .ico { width: 1.25rem; height: 1.25rem; }
+.partner b { display: block; color: var(--navy); line-height: 1.35; }
+.partner span { color: var(--muted); font-size: .9rem; display: block; }
+.partner .btn { margin-top: .55rem; padding: .35rem .8rem; font-size: .85rem; border-width: 1.5px; }
+.partner .btn .ico { width: 1rem; height: 1rem; }
+
+footer { text-align: center; color: var(--muted); font-size: .9rem; display: grid; gap: .4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem 1rem; font-weight: 700; }
+
+@media (max-width: 760px) {
+  .about { grid-template-columns: minmax(0, 1fr); }
+  .header { padding-block: 28px 20px; }
+  .panel { padding: 1.15rem; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.6-3.4 3-5.2 6-5.2s5.4 1.8 6 5.2"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14c2.6.2 4.4 1.8 5 4.6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+  <symbol id="i-sheet" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 15.5h5"/></symbol>
+  <symbol id="i-tools" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11"/><path d="M11 10.5V4.5a1.5 1.5 0 0 1 3 0v6"/><path d="M14 10.5V6a1.5 1.5 0 0 1 3 0v8.5c0 3.6-2.6 6.5-6 6.5-2.4 0-3.7-1.2-5-3.2L4 14.5a1.5 1.5 0 0 1 2.4-1.7L8 14.5"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l1-4L15.5 5.5a2 2 0 0 1 3 3L8 19z"/><path d="M13.5 7.5l3 3"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="6" r="2.6"/><circle cx="18" cy="18" r="2.6"/><path d="M8.3 10.8l7.4-3.6M8.3 13.2l7.4 3.6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5.5h16v10H10l-4.5 4v-4H4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.8C19.5 15.4 12 20 12 20z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 7.5h14.5a1.5 1.5 0 0 1 1.5 1.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18V7.5z"/><path d="M4 7.5l11-3.5v3.5"/><circle cx="16" cy="13.5" r="1.2"/></symbol>
+  <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11"/></symbol>
+  <symbol id="i-text" viewBox="0 0 24 24"><path d="M4 18L8.5 6 13 18M5.7 14h5.6"/><path d="M15 12.5h5M15 16h5M15 9h5"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01M8.5 15h.01M12 15h.01M15.5 15h.01M8.5 18h.01M12 18h.01M15.5 18h.01"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.5 5.2 3.5 8.5s-1.1 6.1-3.5 8.5c-2.4-2.4-3.5-5.2-3.5-8.5s1.1-6.1 3.5-8.5z"/></symbol>
+  <symbol id="i-puzzle" viewBox="0 0 24 24"><path d="M5 8h3.5a2 2 0 1 1 4 0H16v3.5a2 2 0 1 1 0 4V19H12.5a2 2 0 1 0-4 0H5v-3.5a2 2 0 1 0 0-4z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"/></symbol>
+  <symbol id="i-house" viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-euro" viewBox="0 0 24 24"><path d="M17.5 6.5A6.5 6.5 0 1 0 17.5 17.5"/><path d="M5 10.5h8M5 13.5h8"/></symbol>
+</svg>
+
+<a class="skip" href="#infoblaetter">Direkt zu den Infoblättern</a>
+
+<div class="app">
+  <nav class="topbar" aria-label="Hauptnavigation">
+    <a href="#projekt">Projekt</a>
+    <a href="#infoblaetter">Infoblätter</a>
+    <a href="#partner">Partner</a>
+    <a href="https://keb-rheinland-pfalz.de" target="_blank" rel="noopener">Kontakt</a>
+  </nav>
+
+  <header class="header" id="start">
+    <div class="logo" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></div>
+    <p class="eyebrow">Ein Projekt der KEB Rheinland-Pfalz</p>
+    <h1>ToolCheck Inklusion</h1>
+    <p class="subtitle">Menschen mit Behinderungen testen digitale und KI-gestützte Werkzeuge im Alltag. Aus ihren Bewertungen entstehen Infoblätter in Einfacher Sprache, frei zum Herunterladen.</p>
+    <div class="cta">
+      <a class="btn primary" href="#infoblaetter" id="cta-info"><svg class="ico" aria-hidden="true"><use href="#i-sheet"/></svg>Zu den Infoblättern</a>
+      <a class="btn ghost" href="#projekt"><svg class="ico" aria-hidden="true"><use href="#i-people"/></svg>Über das Projekt</a>
+    </div>
+  </header>
+
+  <main>
+  <section class="facts" aria-label="Das Projekt in Zahlen">
+    <div class="fact"><span class="badge b-teal" aria-hidden="true"><svg class="ico"><use href="#i-people"/></svg></span><div><strong>200</strong><span>Nutzer:innen haben getestet</span></div></div>
+    <div class="fact"><span class="badge b-sky" aria-hidden="true"><svg class="ico"><use href="#i-pin"/></svg></span><div><strong>30</strong><span>Workshops wurden umgesetzt</span></div></div>
+    <div class="fact"><span class="badge b-green" aria-hidden="true"><svg class="ico"><use href="#i-sheet"/></svg></span><div><strong id="count-ready">7</strong><span>Infoblätter zum Herunterladen</span></div></div>
+  </section>
+
+    <section id="projekt" aria-labelledby="h-projekt">
+      <div class="section-head">
+        <h2 id="h-projekt">Über das Projekt</h2>
+        <div class="toggle" role="group" aria-label="Sprache wählen">
+          <button type="button" id="btn-std" aria-pressed="true">Standardsprache</button>
+          <button type="button" id="btn-easy" aria-pressed="false">Einfache Sprache</button>
+        </div>
+      </div>
+      <div class="panel about">
+        <div>
+          <div class="prose" id="txt-std">
+            <p>Vorlese-Apps, Übersetzungen in Einfache Sprache und KI-Assistenten versprechen mehr Teilhabe. Ob sie im Alltag tatsächlich funktionieren, zeigt sich erst in der Anwendung. ToolCheck Inklusion lässt diese Werkzeuge deshalb von den Menschen prüfen, für die sie gedacht sind.</p>
+            <p>In Workshops probieren Nutzer:innen ein Tool aus und bewerten es direkt im Anschluss. Sie halten fest, was leicht verständlich war, wo Barrieren lagen und für wen sich das Tool eignet. Menschen mit Behinderungen sind dabei Expert:innen in eigener Sache.</p>
+            <p>Die Ergebnisse erscheinen als Infoblätter in Einfacher Sprache. Sie richten sich an Nutzer:innen, Begleitpersonen und Bildungseinrichtungen und stehen als Open Educational Resources frei zur Verfügung.</p>
+          </div>
+          <div class="prose easy" id="txt-easy" hidden>
+            <p>Es gibt viele digitale Hilfen. Zum Beispiel Apps, die Texte vorlesen. Oder Programme, die schwere Texte leichter machen.</p>
+            <p>Wir wollen wissen, ob diese Tools wirklich helfen.</p>
+            <p>Darum probieren Menschen mit Behinderung die Tools aus. Sie sagen, was gut ist. Und sie sagen, was schwer ist.</p>
+            <p>Daraus machen wir Infoblätter in Einfacher Sprache. Die Infoblätter kosten nichts.</p>
+          </div>
+        </div>
+        <div>
+          <p class="steps-title">So arbeiten wir</p>
+          <ol class="steps">
+            <li><span class="badge b-sky" aria-hidden="true"><svg class="ico"><use href="#i-house"/></svg></span><div><b>1. Workshop</b><span>vor Ort oder online, in einer Einrichtung aus der Region</span></div></li>
+            <li><span class="badge b-teal" aria-hidden="true"><svg class="ico"><use href="#i-hand"/></svg></span><div><b>2. Ausprobieren</b><span>die Expert:innen testen die Tools selbst</span></div></li>
+            <li><span class="badge b-amber" aria-hidden="true"><svg class="ico"><use href="#i-pencil"/></svg></span><div><b>3. Bewerten</b><span>mit einem Bewertungsbogen in Einfacher Sprache</span></div></li>
+            <li><span class="badge b-green" aria-hidden="true"><svg class="ico"><use href="#i-sheet"/></svg></span><div><b>4. Infoblatt</b><span>mit Erfahrungen, Tipps und QR-Codes zu den Tools</span></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section id="infoblaetter" aria-labelledby="h-info">
+      <div class="section-head">
+        <h2 id="h-info">Infoblätter zum Herunterladen</h2>
+        
+      </div>
+      <div class="grid" id="ready"></div>
+      <h3 class="sub">Bald verfügbar</h3>
+      <div class="grid" id="soon"></div>
+    </section>
+
+    <section id="partner" aria-labelledby="h-partner">
+      <div class="section-head"><h2 id="h-partner">Partner und Förderung</h2></div>
+      <div class="panel partners">
+        <div class="partner"><span class="badge b-teal" aria-hidden="true"><svg class="ico"><use href="#i-house"/></svg></span><div><b>Katholische Erwachsenenbildung Rheinland-Pfalz</b><span>Trägerin des Projekts</span><a class="btn ghost" href="https://keb-rheinland-pfalz.de" target="_blank" rel="noopener" aria-label="Website der KEB Rheinland-Pfalz, öffnet in neuem Fenster"><svg class="ico" aria-hidden="true"><use href="#i-link"/></svg>Zur Website</a></div></div>
+        <div class="partner"><span class="badge b-sky" aria-hidden="true"><svg class="ico"><use href="#i-link"/></svg></span><div><b>GrubiNetz Eifel/Mosel/Trier</b><span>Kooperationspartner</span><a class="btn ghost" href="https://www.grubinetz.de" target="_blank" rel="noopener" aria-label="Website von GrubiNetz, öffnet in neuem Fenster"><svg class="ico" aria-hidden="true"><use href="#i-link"/></svg>Zur Website</a></div></div>
+        <div class="partner"><span class="badge b-sky" aria-hidden="true"><svg class="ico"><use href="#i-link"/></svg></span><div><b>GrubiNetz Mittelrhein/Westerwald-Taunus</b><span>Kooperationspartner</span></div></div>
+        <div class="partner"><span class="badge b-amber" aria-hidden="true"><svg class="ico"><use href="#i-people"/></svg></span><div><b>Inklusions-Guides</b><span>ToolCheck Inklusion ist Teil dieses Projekts</span><a class="btn ghost" href="https://inklusions-guides.webnode.page" target="_blank" rel="noopener" aria-label="Website der Inklusions-Guides, öffnet in neuem Fenster"><svg class="ico" aria-hidden="true"><use href="#i-link"/></svg>Zur Website</a></div></div>
+        <div class="partner"><span class="badge b-green" aria-hidden="true"><svg class="ico"><use href="#i-euro"/></svg></span><div><b>Ministerium für Wissenschaft, Weiterbildung und Gesundheit Rheinland-Pfalz</b><span>fördert das Projekt</span><a class="btn ghost" href="https://mwwg.rlp.de" target="_blank" rel="noopener" aria-label="Website des Ministeriums für Wissenschaft, Weiterbildung und Gesundheit, öffnet in neuem Fenster"><svg class="ico" aria-hidden="true"><use href="#i-link"/></svg>Zur Website</a></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <nav aria-label="Rechtliches">
+      <a href="https://keb-rheinland-pfalz.de" target="_blank" rel="noopener">Impressum</a>
+      <a href="https://keb-rheinland-pfalz.de" target="_blank" rel="noopener">Datenschutz</a>
+      <a href="https://keb-rheinland-pfalz.de" target="_blank" rel="noopener">Kontakt</a>
+    </nav>
+    <p>Projekt ToolCheck Inklusion · Katholische Erwachsenenbildung Rheinland-Pfalz</p>
+    <p>Alle Infoblätter stehen unter CC BY-NC-SA 4.0 · freie Nutzung mit Namensnennung, keine kommerzielle Nutzung</p>
+  </footer>
+</div>
+
+<script>
+const READY = [
+  { file: "Infoblatt_Soziale_Medien_Einfache_Sprache", icon: "share", tone: "b-sky", title: "Soziale Medien einfach erklärt", text: "Ein Kartenset der KEB Hessen erklärt TikTok, Instagram und falsche Nachrichten. Mit Tipps für Gruppen und Begleitpersonen.", pages: 4 },
+  { file: "Infoblatt_Hilfe_bei_Cybermobbing_Einfache_Sprache", icon: "shield", tone: "b-teal", title: "Hilfe bei Cybermobbing", text: "Die kostenlose App „Cyber-Mobbing Leichte Hilfe“ und sechs Schritte, die bei Beleidigungen im Internet helfen.", pages: 3 },
+  { file: "Infoblatt_Chatbots_Einfache_Sprache", icon: "chat", tone: "b-sky", title: "Chatbots", text: "Wobei Chatbots beim Schreiben und Verstehen helfen, und worauf man bei Datenschutz und Kosten achten sollte.", pages: 3 },
+  { file: "Infoblatt_Emotionale_Beziehungen_Einfache_Sprache", icon: "heart", tone: "b-amber", title: "Emotionale Beziehungen zu Chatbots", text: "Über Nähe, Einsamkeit und die Grenzen eines Chatbots als Gesprächspartner.", pages: 3 },
+  { file: "Infoblatt_Sprachassistenten_Einfache_Sprache", icon: "mic", tone: "b-teal", title: "Sprachassistenten im Alltag", text: "Alexa, Siri, Gemini, ChatGPT und Claude im Vergleich, mit QR-Codes zu allen Angeboten.", pages: 3 },
+  { file: "Infoblatt_Haushaltsbuch_Einfache_Sprache", icon: "wallet", tone: "b-green", title: "Haushaltsbuch auf dem Handy", text: "Zwei kostenlose Apps zum Planen von Geld. Die Daten bleiben auf dem eigenen Gerät.", pages: 3 },
+  { file: "Infoblatt_Texte_vorlesen_Einfache_Sprache", icon: "speaker", tone: "b-amber", title: "Texte vorlesen lassen", text: "Sechs Vorlese-Tools im Test, von der Funktion im iPhone bis zu ElevenLabs.", pages: 3 },
+];
+const SOON = [
+  { icon: "text", tone: "b-sky", title: "Texte in Einfache Sprache übersetzen", text: "KI-Tools, die schwere Texte leichter machen." },
+  { icon: "calc", tone: "b-green", title: "Rechnen und Zahlen", text: "Hilfen für den Umgang mit Zahlen im Alltag." },
+  { icon: "globe", tone: "b-teal", title: "Andere Sprachen übersetzen", text: "Übersetzungs-Apps für Gespräche und Texte." },
+  { icon: "puzzle", tone: "b-amber", title: "Hilfen bei Neurodiversität", text: "Tools für Konzentration, Struktur und Orientierung." },
+];
+
+const NS = "http://www.w3.org/2000/svg";
+function icon(name) {
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("class", "ico"); svg.setAttribute("aria-hidden", "true");
+  const use = document.createElementNS(NS, "use"); use.setAttribute("href", "#i-" + name);
+  svg.append(use); return svg;
+}
+const el = (tag, attrs = {}, kids = []) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) k === "text" ? (n.textContent = v) : n.setAttribute(k, v);
+  for (const c of kids) n.append(c);
+  return n;
+};
+
+const ready = document.getElementById("ready");
+for (const s of READY) {
+  const pdf = el("a", { class: "btn primary", href: "downloads/" + s.file + ".pdf", download: "", "aria-label": s.title + " als PDF herunterladen" }, [icon("download"), document.createTextNode("PDF")]);
+  const docx = el("a", { class: "btn ghost", href: "downloads/" + s.file + ".docx", download: "", "aria-label": s.title + " als Word-Datei herunterladen" }, [icon("download"), document.createTextNode("Word")]);
+  ready.append(el("article", { class: "sheet" }, [
+    el("div", { class: "sheet-top" }, [el("span", { class: "badge " + s.tone }, [icon(s.icon)]), el("h3", { text: s.title })]),
+    el("p", { text: s.text }),
+    el("div", { class: "tags" }, [el("span", { class: "tag ok", text: "verfügbar" }), el("span", { class: "tag info", text: "Einfache Sprache · " + s.pages + " Seiten" })]),
+    el("div", { class: "dl" }, [pdf, docx]),
+  ]));
+}
+const soon = document.getElementById("soon");
+for (const s of SOON) {
+  soon.append(el("article", { class: "sheet upcoming" }, [
+    el("div", { class: "sheet-top" }, [el("span", { class: "badge " + s.tone }, [icon(s.icon)]), el("h4", { text: s.title })]),
+    el("p", { text: s.text }),
+    el("div", { class: "tags" }, [el("span", { class: "tag soon", text: "in Arbeit" })]),
+  ]));
+}
+document.getElementById("count-ready").textContent = READY.length;
+
+const std = document.getElementById("btn-std"), easy = document.getElementById("btn-easy");
+function setLang(isEasy) {
+  document.getElementById("txt-std").hidden = isEasy;
+  document.getElementById("txt-easy").hidden = !isEasy;
+  std.setAttribute("aria-pressed", String(!isEasy));
+  easy.setAttribute("aria-pressed", String(isEasy));
+  try { localStorage.setItem("tc-lang", isEasy ? "easy" : "std"); } catch (e) {}
+}
+std.addEventListener("click", () => setLang(false));
+easy.addEventListener("click", () => setLang(true));
+try { if (localStorage.getItem("tc-lang") === "easy") setLang(true); } catch (e) {}
+
+
+</script>
+</body>
+</html>
