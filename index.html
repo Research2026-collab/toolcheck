@@ -154,6 +154,102 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
   .header { padding-block: 28px 20px; }
   .panel { padding: 1.15rem; }
 }
+
+/* Minimalistische Fotogestaltung */
+[hidden] { display: none !important; }
+html { scroll-padding-top: 24px; }
+body { padding-inline: max(24px, env(safe-area-inset-left)); }
+.app { max-width: 1240px; padding-block: 30px 40px; }
+.topbar { justify-content: flex-end; align-items: center; padding: 0 0 28px; border-bottom: 1px solid var(--border); gap: 1.8rem; }
+.topbar .wordmark { margin-right: auto; font-size: 1.15rem; color: var(--navy); letter-spacing: -.04em; }
+.wordmark span { color: var(--teal); }
+.header { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 5%; text-align: left; padding-block: 64px 72px; }
+.header .eyebrow { font-size: .75rem; margin-bottom: 22px; }
+.header h1 { font-size: clamp(3rem, 5.4vw, 5.2rem); line-height: 1.02; letter-spacing: -.055em; font-weight: 700; }
+.header h1 span { color: var(--teal); }
+.subtitle { margin: 26px 0 0; font-size: 1.15rem; max-width: 30rem; }
+.cta { justify-content: flex-start; margin-top: 30px; gap: 1.3rem; }
+.btn { border-radius: 2px; padding: .72rem 1.1rem; }
+.cta .ghost { border-color: transparent; background: transparent; padding-inline: 0; }
+figure { margin: 0; }
+.hero-image { width: 100%; height: 560px; object-fit: cover; object-position: 56% center; display: block; }
+.photo-caption { font-size: .78rem; margin-top: 10px; color: var(--muted); }
+section { margin-bottom: 104px; }
+.section-head { margin-bottom: 30px; align-items: flex-end; }
+h2 { font-size: clamp(2rem, 3.8vw, 3.1rem); letter-spacing: -.04em; line-height: 1.1; }
+.section-intro { max-width: 34rem; margin-top: 18px; color: var(--muted); }
+.kicker { font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--teal); margin-bottom: 18px; }
+.facts { display: flex; flex-wrap: wrap; gap: 2rem 5rem; padding-block: 28px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin-bottom: 90px; }
+.fact { background: transparent; border: 0; border-radius: 0; padding: 0; flex: 1; }
+.fact .badge { display: none; }
+.fact strong { font-size: 2.5rem; letter-spacing: -.045em; margin-bottom: 6px; }
+.fact span { font-size: .9rem; }
+.grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 50px; }
+.sheet { background: transparent; border: 0; border-top: 1px solid var(--border); border-radius: 0; padding: 26px 0 30px; gap: 14px; position: relative; }
+.sheet-top { align-items: flex-start; gap: 15px; }
+.sheet-top .badge { background: transparent; color: var(--teal); border-radius: 0; width: 28px; height: 28px; }
+.sheet h3 { font-size: 1.45rem; letter-spacing: -.025em; }
+.sheet p { font-size: 1rem; max-width: 31rem; }
+.tag { border-radius: 0; padding: 0; font-size: .8rem; font-weight: 400; }
+.tag.ok { display: none; }
+.tag.info, .tag.soon { background: transparent; color: var(--muted); }
+.dl { margin-top: 4px; gap: 1.2rem; }
+.dl .btn { background: transparent; color: var(--teal); border: 0; padding: 5px 0; border-bottom: 1px solid var(--teal); }
+.sheet:not(.upcoming):hover { box-shadow: none; transform: none; }
+#soon { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 30px; }
+.sheet.upcoming { border-style: solid; }
+.sub { font-size: 1.5rem; margin-top: 48px; }
+.panel { padding: 0; background: transparent; border: 0; border-radius: 0; }
+.about { gap: 60px; grid-template-columns: 1.2fr 1fr; }
+.prose { font-size: 1.05rem; }
+.steps li { border-radius: 0; background: transparent; padding: 12px 0; border-top: 1px solid var(--border); }
+.steps .badge { display: none; }
+.steps b { font-size: 1.2rem; }
+.project-image { width: 100%; aspect-ratio: 1.55; object-fit: cover; display: block; margin-bottom: 36px; }
+.editorial { display: grid; grid-template-columns: .85fr 1fr; gap: 10%; align-items: center; }
+.editorial img { width: 100%; max-height: 540px; object-fit: cover; display: block; }
+.editorial h2 { margin-bottom: 24px; }
+.editorial p { color: var(--muted); max-width: 29rem; }
+.editorial .text-link { display: inline-block; margin-top: 25px; font-weight: 700; }
+.partners { gap: 30px; grid-template-columns: repeat(3,minmax(0,1fr)); }
+.partner { padding: 18px 0; border-top: 1px solid var(--border); border-radius: 0; background: transparent; }
+.partner .badge { display: none; }
+.partner .btn { border: 0; padding: 0; background: transparent; }
+footer { text-align: left; gap: 12px; font-size: .8rem; }
+footer nav { justify-content: flex-start; }
+.toggle { border-radius: 2px; }
+.toggle button { border-radius: 0; }
+@media (max-width: 850px) {
+ .header { gap: 30px; padding-block: 44px 52px; }
+ .header h1 { font-size: 3.5rem; }
+ .hero-image { height: 470px; }
+ .topbar { gap: 1rem; }
+ .topbar .wordmark { flex-basis: 100%; }
+ .about { grid-template-columns: 1fr; gap: 38px; }
+ .partners { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 600px) {
+ body { padding-inline: 22px; }
+ .app { padding-top: 22px; }
+ .topbar { justify-content: flex-start; gap: .6rem 1.3rem; padding-bottom: 20px; }
+ .header { grid-template-columns: 1fr; gap: 32px; padding-block: 38px 42px; }
+ .header h1 { font-size: clamp(2.8rem, 12vw, 4rem); }
+ .subtitle { font-size: 1.06rem; margin-top: 20px; }
+ .hero-image { height: 340px; object-position: center; }
+ .facts { gap: 22px; margin-bottom: 62px; }
+ .fact { min-width: 38%; }
+ .fact strong { font-size: 2rem; }
+ section { margin-bottom: 68px; }
+ .grid, #soon, .editorial, .partners { grid-template-columns: 1fr; }
+ .section-head { align-items: flex-start; }
+ .editorial { gap: 28px; }
+ .editorial img { max-height: 390px; object-position: center 62%; }
+ .project-image { aspect-ratio: 1.15; }
+}
+
+
+/* Vollständige Bildmotive ohne enge Ausschnitte */
+.hero-image, .project-image, .editorial img { height: auto; max-height: none; aspect-ratio: auto; object-fit: contain; }
 </style>
 </head>
 <body>
@@ -185,7 +281,7 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
 <a class="skip" href="#infoblaetter">Direkt zu den Infoblättern</a>
 
 <div class="app">
-  <nav class="topbar" aria-label="Hauptnavigation">
+  <nav class="topbar" aria-label="Hauptnavigation"><a class="wordmark" href="#start">ToolCheck <span>Inklusion</span></a>
     <a href="#projekt">Projekt</a>
     <a href="#infoblaetter">Infoblätter</a>
     <a href="#partner">Partner</a>
@@ -193,60 +289,21 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
   </nav>
 
   <header class="header" id="start">
-    <div class="logo" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></div>
-    <p class="eyebrow">Ein Projekt der KEB Rheinland-Pfalz</p>
-    <h1>ToolCheck Inklusion</h1>
-    <p class="subtitle">Menschen mit Behinderungen testen digitale und KI-gestützte Werkzeuge im Alltag. Aus ihren Bewertungen entstehen Infoblätter in Einfacher Sprache, frei zum Herunterladen.</p>
-    <div class="cta">
-      <a class="btn primary" href="#infoblaetter" id="cta-info"><svg class="ico" aria-hidden="true"><use href="#i-sheet"/></svg>Zu den Infoblättern</a>
-      <a class="btn ghost" href="#projekt"><svg class="ico" aria-hidden="true"><use href="#i-people"/></svg>Über das Projekt</a>
+    <div class="hero-copy">
+      <p class="eyebrow">Ein Projekt der KEB Rheinland-Pfalz</p>
+      <h1>Digitale Helfer.<br><span>Von uns<br>getestet.</span></h1>
+      <p class="subtitle">Was hilft wirklich im Alltag? Bei ToolCheck Inklusion testen Menschen mit Behinderungen digitale Tools und KI. Ihre Erfahrungen gibt es in Einfacher Sprache.</p>
+      <div class="cta"><a class="btn primary" href="#infoblaetter">Infoblätter entdecken <span aria-hidden="true">↗</span></a><a class="btn ghost" href="#projekt">Das Projekt <span aria-hidden="true">↓</span></a></div>
     </div>
+    <figure><img class="hero-image" src="assets/gemeinsam-tablet-ki.png" width="1536" height="1024" fetchpriority="high" alt="Zwei Erwachsene probieren gemeinsam ein Tablet aus."><figcaption class="photo-caption">Digitale Werkzeuge gemeinsam entdecken. KI-generiertes Symbolbild</figcaption></figure>
   </header>
 
   <main>
-  <section class="facts" aria-label="Das Projekt in Zahlen">
-    <div class="fact"><span class="badge b-teal" aria-hidden="true"><svg class="ico"><use href="#i-people"/></svg></span><div><strong>200</strong><span>Nutzer:innen haben getestet</span></div></div>
-    <div class="fact"><span class="badge b-sky" aria-hidden="true"><svg class="ico"><use href="#i-pin"/></svg></span><div><strong>30</strong><span>Workshops wurden umgesetzt</span></div></div>
-    <div class="fact"><span class="badge b-green" aria-hidden="true"><svg class="ico"><use href="#i-sheet"/></svg></span><div><strong>8</strong><span>Infoblätter zum Herunterladen</span></div></div>
-  </section>
 
-    <section id="projekt" aria-labelledby="h-projekt">
-      <div class="section-head">
-        <h2 id="h-projekt">Über das Projekt</h2>
-        <div class="toggle" id="lang-toggle" role="group" aria-label="Sprache wählen" hidden>
-          <button type="button" id="btn-std" aria-pressed="true">Standardsprache</button>
-          <button type="button" id="btn-easy" aria-pressed="false">Einfache Sprache</button>
-        </div>
-      </div>
-      <div class="panel about">
-        <div>
-          <div class="prose" id="txt-std">
-            <p>Vorlese-Apps, Übersetzungen in Einfache Sprache und KI-Assistenten versprechen mehr Teilhabe. Ob sie im Alltag tatsächlich funktionieren, zeigt sich erst in der Anwendung. ToolCheck Inklusion lässt diese Werkzeuge deshalb von den Menschen prüfen, für die sie gedacht sind.</p>
-            <p>In Workshops probieren Nutzer:innen ein Tool aus und bewerten es direkt im Anschluss. Sie halten fest, was leicht verständlich war, wo Barrieren lagen und für wen sich das Tool eignet. Menschen mit Behinderungen sind dabei Expert:innen in eigener Sache.</p>
-            <p>Die Ergebnisse erscheinen als Infoblätter in Einfacher Sprache. Sie richten sich an Nutzer:innen, Begleitpersonen und Bildungseinrichtungen und stehen als Open Educational Resources frei zur Verfügung.</p>
-          </div>
-          <div class="prose easy" id="txt-easy" hidden>
-            <p>Es gibt viele digitale Hilfen. Zum Beispiel Apps, die Texte vorlesen. Oder Programme, die schwere Texte leichter machen.</p>
-            <p>Wir wollen wissen, ob diese Tools wirklich helfen.</p>
-            <p>Darum probieren Menschen mit Behinderung die Tools aus. Sie sagen, was gut ist. Und sie sagen, was schwer ist.</p>
-            <p>Daraus machen wir Infoblätter in Einfacher Sprache. Die Infoblätter kosten nichts.</p>
-          </div>
-        </div>
-        <div>
-          <p class="steps-title">So arbeiten wir</p>
-          <ol class="steps">
-            <li><span class="badge b-sky" aria-hidden="true"><svg class="ico"><use href="#i-house"/></svg></span><div><b>1. Workshop</b><span>vor Ort oder online, in einer Einrichtung aus der Region</span></div></li>
-            <li><span class="badge b-teal" aria-hidden="true"><svg class="ico"><use href="#i-hand"/></svg></span><div><b>2. Ausprobieren</b><span>die Expert:innen testen die Tools selbst</span></div></li>
-            <li><span class="badge b-amber" aria-hidden="true"><svg class="ico"><use href="#i-pencil"/></svg></span><div><b>3. Bewerten</b><span>mit einem Bewertungsbogen in Einfacher Sprache</span></div></li>
-            <li><span class="badge b-green" aria-hidden="true"><svg class="ico"><use href="#i-sheet"/></svg></span><div><b>4. Infoblatt</b><span>mit Erfahrungen, Tipps und QR-Codes zu den Tools</span></div></li>
-          </ol>
-        </div>
-      </div>
-    </section>
 
     <section id="infoblaetter" aria-labelledby="h-info">
       <div class="section-head">
-        <h2 id="h-info">Infoblätter zum Herunterladen</h2>
+        <div><p class="kicker">Ausprobiert. Bewertet. Für alle.</p><h2 id="h-info">Was hilft dir<br>im Alltag?</h2><p class="section-intro">Alle acht Infoblätter sind kostenlos – als PDF und Word-Datei in Einfacher Sprache.</p></div>
         
       </div>
       <div class="grid" id="ready">
@@ -270,7 +327,7 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
         </article>
         <article class="sheet">
           <div class="sheet-top"><span class="badge b-sky"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg></span><h3>Chatbots</h3></div>
-          <p>Wobei Chatbots beim Schreiben und Verstehen helfen, und worauf man bei Datenschutz und Kosten achten sollte.</p>
+          <p>Chatbots als Hilfe beim Schreiben und Verstehen. Mit Informationen zu Datenschutz und Kosten.</p>
           <div class="tags"><span class="tag ok">verfügbar</span><span class="tag info">Einfache Sprache · 3 Seiten</span></div>
           <div class="dl">
             <a class="btn primary" href="downloads/Infoblatt_Chatbots_Einfache_Sprache.pdf" download aria-label="Chatbots als PDF herunterladen (125 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</a>
@@ -279,7 +336,7 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
         </article>
         <article class="sheet">
           <div class="sheet-top"><span class="badge b-amber"><svg class="ico" aria-hidden="true"><use href="#i-heart"/></svg></span><h3>Emotionale Beziehungen zu Chatbots</h3></div>
-          <p>Über Nähe, Einsamkeit und die Grenzen eines Chatbots als Gesprächspartner.</p>
+          <p>Über Nähe, Einsamkeit und die Grenzen eines Chatbots als Gesprächs- und Beziehungspartner.</p>
           <div class="tags"><span class="tag ok">verfügbar</span><span class="tag info">Einfache Sprache · 3 Seiten</span></div>
           <div class="dl">
             <a class="btn primary" href="downloads/Infoblatt_Emotionale_Beziehungen_Einfache_Sprache.pdf" download aria-label="Emotionale Beziehungen zu Chatbots als PDF herunterladen (120 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</a>
@@ -297,7 +354,7 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
         </article>
         <article class="sheet">
           <div class="sheet-top"><span class="badge b-green"><svg class="ico" aria-hidden="true"><use href="#i-wallet"/></svg></span><h3>Haushaltsbuch auf dem Handy</h3></div>
-          <p>Zwei kostenlose Apps zum Planen von Geld. Die Daten bleiben auf dem eigenen Gerät.</p>
+          <p>Zwei kostenlose Apps zum Planen des Umgangs mit Geld. Die Daten bleiben auf dem eigenen Gerät.</p>
           <div class="tags"><span class="tag ok">verfügbar</span><span class="tag info">Einfache Sprache · 3 Seiten</span></div>
           <div class="dl">
             <a class="btn primary" href="downloads/Infoblatt_Haushaltsbuch_Einfache_Sprache.pdf" download aria-label="Haushaltsbuch auf dem Handy als PDF herunterladen (169 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</a>
@@ -315,7 +372,7 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
         </article>
         <article class="sheet">
           <div class="sheet-top"><span class="badge b-sky"><svg class="ico" aria-hidden="true"><use href="#i-puzzle"/></svg></span><h3>Hilfen bei Neurodivergenz</h3></div>
-          <p>goblin.tools im Test: kleine KI-Helfer, die Aufgaben in Schritte teilen und bei Entscheidungen helfen.</p>
+          <p>KI-Helfer, die neurodivergente Menschen im Alltag unterstützen.</p>
           <div class="tags"><span class="tag ok">verfügbar</span><span class="tag info">Einfache Sprache · 3 Seiten</span></div>
           <div class="dl">
             <a class="btn primary" href="downloads/Infoblatt_Neurodivergenz_Einfache_Sprache.pdf" download aria-label="Hilfen bei Neurodivergenz als PDF herunterladen (131 KB)"><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg>PDF</a>
@@ -343,6 +400,45 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
       </div>
     </section>
 
+    <section id="projekt" aria-labelledby="h-projekt">
+      <div class="section-head">
+        <div><p class="kicker">Das Projekt</p><h2 id="h-projekt">Erfahrung zählt.</h2></div>
+        <div class="toggle" id="lang-toggle" role="group" aria-label="Sprache wählen" hidden>
+          <button type="button" id="btn-std" aria-pressed="true">Standardsprache</button>
+          <button type="button" id="btn-easy" aria-pressed="false">Einfache Sprache</button>
+        </div>
+      </div>
+      <figure><img class="project-image" src="assets/austausch-ki.png" width="1536" height="1024" loading="lazy" alt="Drei Erwachsene tauschen sich an einem Tisch über digitale Werkzeuge aus."></figure>
+      <div class="panel about">
+        <div>
+          <div class="prose" id="txt-std">
+            <p>Vorlese-Apps, Übersetzungen in Einfache Sprache und KI-Assistenten versprechen mehr Teilhabe. Ob sie im Alltag tatsächlich funktionieren, zeigt sich erst in der Anwendung. ToolCheck Inklusion lässt diese Werkzeuge deshalb von den Menschen prüfen, für die sie gedacht sind.</p>
+            <p>In Workshops probieren Nutzer:innen ein Tool aus und bewerten es direkt im Anschluss. Sie halten fest, was leicht verständlich war, wo Barrieren lagen und für wen sich das Tool eignet. Menschen mit Behinderungen sind dabei Expert:innen in eigener Sache.</p>
+            <p>Die Ergebnisse erscheinen als Infoblätter in Einfacher Sprache. Sie richten sich an Nutzer:innen, Begleitpersonen und Bildungseinrichtungen und stehen als Open Educational Resources frei zur Verfügung.</p>
+          </div>
+          <div class="prose easy" id="txt-easy" hidden>
+            <p>Es gibt viele digitale Hilfen. Zum Beispiel Apps, die Texte vorlesen. Oder Programme, die schwere Texte leichter machen.</p>
+            <p>Wir wollen wissen, ob diese Tools wirklich helfen.</p>
+            <p>Darum probieren Menschen mit Behinderung die Tools aus. Sie sagen, was gut ist. Und sie sagen, was schwer ist.</p>
+            <p>Daraus machen wir Infoblätter in Einfacher Sprache. Die Infoblätter kosten nichts.</p>
+          </div>
+        </div>
+        <div>
+          <p class="steps-title">So arbeiten wir</p>
+          <ol class="steps">
+            <li><span class="badge b-sky" aria-hidden="true"><svg class="ico"><use href="#i-house"/></svg></span><div><b>1. Workshop</b><span>vor Ort oder online, in einer Einrichtung aus der Region</span></div></li>
+            <li><span class="badge b-teal" aria-hidden="true"><svg class="ico"><use href="#i-hand"/></svg></span><div><b>2. Ausprobieren</b><span>die Expert:innen testen die Tools selbst</span></div></li>
+            <li><span class="badge b-amber" aria-hidden="true"><svg class="ico"><use href="#i-pencil"/></svg></span><div><b>3. Bewerten</b><span>mit einem Bewertungsbogen in Einfacher Sprache</span></div></li>
+            <li><span class="badge b-green" aria-hidden="true"><svg class="ico"><use href="#i-sheet"/></svg></span><div><b>4. Infoblatt</b><span>mit Erfahrungen, Tipps und QR-Codes zu den Tools</span></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="editorial" aria-labelledby="h-alltag">
+      <figure><img src="assets/smartphone-ki.png" width="1122" height="1402" loading="lazy" alt="Hände bedienen ein Smartphone an einem ruhigen Tisch."></figure>
+      <div><p class="kicker">Teilhabe im Alltag</p><h2 id="h-alltag">Kleine Helfer.<br>Neue Möglichkeiten.</h2><p>Einen Text verstehen. Eine Nachricht schreiben. Die Ausgaben im Blick behalten. Digitale Werkzeuge können den Alltag leichter machen. Wir schauen gemeinsam hin: Was funktioniert? Wo wird es schwierig?</p><a class="text-link" href="#infoblaetter">Die Erfahrungen nachlesen <span aria-hidden="true">↗</span></a></div>
+    </section>
     <section id="partner" aria-labelledby="h-partner">
       <div class="section-head"><h2 id="h-partner">Partner und Förderung</h2></div>
       <div class="panel partners">
@@ -362,6 +458,7 @@ footer nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .3rem
       <a href="https://keb-rheinland-pfalz.de" target="_blank" rel="noopener">Kontakt</a>
     </nav>
     <p>Projekt ToolCheck Inklusion · Katholische Erwachsenenbildung Rheinland-Pfalz</p>
+    <p>Bildnachweis: KI-generierte Symbolbilder, erstellt mit OpenAI Imagegen. Die abgebildeten Personen und Situationen sind fiktiv.</p>
     <p>Alle Infoblätter stehen unter CC BY-NC-SA 4.0 · freie Nutzung mit Namensnennung, keine kommerzielle Nutzung</p>
   </footer>
 </div>
